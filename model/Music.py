@@ -18,7 +18,7 @@ class Music:
     def getLink(self):
         return self.link
     def show(self):
-        print(self.id_music,"-",self.name_music,"-",self.date_music,"-",self.score_music,"-",self.link_music,"-")
+        print(self.id,"-",self.name,"-",self.day,"-",self.score,"-",self.link)
     def open_music(self):
         webbrowser.open(self.link)
     
@@ -30,6 +30,18 @@ class ListMusic:
         return self.list
     def add_music(self,Music):
         self.list.append(Music)
+    def delete_music_by_name(self,name_music):
+        for Music in self.list:
+            if Music.getName()== name_music:
+                self.list.remove(Music)
+        self.saveAllMusic()
+    def edit_music_by_name(self,name_old_music:str,new_music:Music):
+        for music in self.list:
+            if music.getName()==name_old_music:
+                self.list.remove(music)
+                self.list.append(new_music)
+        self.saveAllMusic()
+
     def show_all_music(self):
         for i in self.list:
             i.show()
@@ -45,9 +57,22 @@ class ListMusic:
             for M in jsonFile:
                 music = Music(M["id"],M["name"],M["day"],M["score"],M["link"])
                 self.add_music(music)
-# while True: 
+
+    def searchMusicByTitle(self, name):
+        result = []
+        for music in self.list:
+            if name in music.getName():
+                result.append(music)
+                music.show()
+        return result
+
+
+# while True:  
 #     newlist.show_all_music()
 #     x = input("Enter song's id:")
 #     for i in newlist.getAllMusic():
 #         if x == i :
 #             i.open_movie()
+l = ListMusic()
+l.edit_music_by_name("Sunflower",Music("2","Roar2","1/1/1111","6.2","Ko co link"))
+l.searchMusicByTitle("C")
