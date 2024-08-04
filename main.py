@@ -1,17 +1,55 @@
-from PyQt6.QtWidgets import QApplication,QMainWindow,QMessageBox
+from PyQt6.QtWidgets import QApplication,QMainWindow,QMessageBox,QDialog
 from PyQt6 import uic
 import sys
 from model.Music import Music,ListMusic
 from model.account import Account,ListAccount
 from ui_py.ui_homedashboard import Ui_MainWindow
+class AddDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("Addsong.ui",self)
+        self.buttonBox.accepted.connect(self.addMovie)
+        self.buttonBox.rejected.connect(self.exit)
+
+    def addMovie(self):
+        self.l = ListMusic()
+        self.l.add_music(Music("Null",self.lineEdit_name.text(),self.dateEdit_date.text(),self.lineEdit_score.text(),self.lineEdit_URL.text()))
+        AdminPage.CallAfterInit()
+        self.close()
+    def exit(self):
+        self.close
+class EditDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("Editsong.ui",self)
+        self.buttonBox.accepted.connect(self.EditMovie)
+        self.buttonBox.rejected.connect(self.exit)
+
+    def EditMovie(self):
+        ...
+        self.close()
+    def exit(self):
+        self.close       
 class HomeMenuDashboard(QMainWindow,Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.CallAfterInit()
-
+        self.pushButton_delete.clicked.connect(self.Delete)
+        self.pushButton_add.clicked.connect(self.ShowAdd)
+        self.pushButton_edit.clicked.connect(self.ShowEdit)
+    def Delete(self):
+        name_music = self.listObject.currentItem().text()
+        self.listObject.takeItem(self.listObject.currentRow())
+        self.l.delete_music_by_name(name_music)
+        self.CallAfterInit()
+    def ShowAdd(self):
+        add.show()
+    def ShowEdit(self):
+        edit.show()
     def CallAfterInit(self):
         self.l = ListMusic()
+        self.listObject.clear()
         for Music in self.l.getAllMusic():
             self.listObject.addItem(Music.getName())
 def show_message_box(title, message, icon):
@@ -77,6 +115,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     LoginPage=LoginPage()
     SigninPage=SignIn()
+    add = AddDialog()
+    edit =EditDialog()
     AdminPage = HomeMenuDashboard()
     AdminPage.show() # Và hiển thị nó
     app.exec()

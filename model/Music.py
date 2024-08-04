@@ -30,6 +30,7 @@ class ListMusic:
         return self.list
     def add_music(self,Music):
         self.list.append(Music)
+        self.saveAllMusic()
     def delete_music_by_name(self,name_music):
         for Music in self.list:
             if Music.getName()== name_music:
@@ -74,5 +75,5 @@ class ListMusic:
 #         if x == i :
 #             i.open_movie()
 l = ListMusic()
-l.edit_music_by_name("Sunflower",Music("2","Roar2","1/1/1111","6.2","Ko co link"))
+l.edit_music_by_name("Roar2",Music("1","Roar","1/1/1111","6.2","Ko co link"))
 l.searchMusicByTitle("C")
