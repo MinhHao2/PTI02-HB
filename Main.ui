@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>859</width>
-    <height>623</height>
+    <width>825</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -162,7 +162,7 @@ color:black;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="pushButton_setting">
          <property name="font">
           <font>
            <family>Heiti SC</family>
@@ -185,6 +185,38 @@ color:black;
           <iconset>
            <activeon>../../Downloads/settings.png</activeon>
           </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>29</width>
+           <height>29</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_game">
+         <property name="font">
+          <font>
+           <family>Heiti SC</family>
+           <pointsize>28</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+background-color: transparent;
+color:black;
+
+</string>
+         </property>
+         <property name="text">
+          <string>Discover</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../Downloads/bar-chart.png</normaloff>../../Downloads/bar-chart.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -283,6 +315,9 @@ border-radius:30px;</string>
                   </property>
                   <property name="text">
                    <string>Hello</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>label_5</cstring>
                   </property>
                  </widget>
                 </item>
@@ -457,6 +492,9 @@ border-radius:30px;</string>
           </property>
           <property name="text">
            <string>Now playing</string>
+          </property>
+          <property name="buddy">
+           <cstring>label_10</cstring>
           </property>
          </widget>
          <widget class="QWidget" name="widget_12" native="true">
@@ -649,13 +687,22 @@ color:black;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>859</width>
+     <width>825</width>
      <height>24</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_search</tabstop>
+  <tabstop>pushButton_setting</tabstop>
+  <tabstop>pushButton_home_2</tabstop>
+  <tabstop>pushButton_home_3</tabstop>
+  <tabstop>pushButton_game</tabstop>
+  <tabstop>pushButton_home_4</tabstop>
+  <tabstop>pushButton_home</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

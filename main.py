@@ -81,7 +81,7 @@ class LoginPage(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("Login.ui",self) # Load Giao diện từ file LoginPage.ui
-        self.l = ListAccount()
+    
 
         # ====== Kết nối sự kiện
         self.pushButton_Login.clicked.connect(self.loginClicked)
@@ -91,8 +91,8 @@ class LoginPage(QMainWindow):
         SigninPage.show()
         self.close()
     def loginClicked(self):
-        if self.l.checkAccount(Account(self.lineEdit_Username.text(),self.lineEdit_Password.text())) == True:
-            SigninPage.show()
+        if ListAcc.checkAccount(Account(self.lineEdit_Username.text(),self.lineEdit_Password.text())) == True:
+            main.show()
             self.close()
         else:
             print("False password")
@@ -102,12 +102,13 @@ class SignIn(QMainWindow):
         uic.loadUi("Sign up.ui",self) # Load Giao diện từ file Sign up.ui
         self.pushButton_GoLogin.clicked.connect(self.GoLogin)
         self.pushButton_SignIn.clicked.connect(self.registerAccount)
-        self.l = ListAccount()
+        
     def saveAccount(self):
-        self.l.addAccount(Account(self.lineEdit_Username.text(),self.lineEdit_Password.text()))
-        self.l.saveAllAccount()
+        ListAcc.addAccount(Account(self.lineEdit_Username.text(),self.lineEdit_Password.text()))
+        ListAcc.saveAllAccount()
+        
     def GoLogin(self):
-        LoginPage.show()
+        loginPage.show()
         self.close()
     def registerAccount(self):
         username = self.lineEdit_Username.text()
@@ -124,17 +125,35 @@ class SignIn(QMainWindow):
         
     
         show_message_box("Thành công", "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.", QMessageBox.Icon.Information)
+        ListAcc.addAccount(Account(self.lineEdit_Username.text(),self.lineEdit_Password.text()))
+        ListAcc.saveAllAccount()
         self.GoLogin()  # Chuyển về trang đăng nhập sau khi đăng ký thành công
-        self.l.addAccount(Account(self.lineEdit_Username.text(),self.lineEdit_Password.text()))
-        self.l.saveAllAccount()
-
+class MainPage(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("Main.ui",self) # Load Giao diện từ file Sign up.ui
+        self.pushButton_setting.clicked.connect(self.Homemenushow)
+        self.pushButton_game.clicked.connect(self.SortPageshow)
+    def SortPageshow(self):
+        sort.show()
+        self.close()
+    def Homemenushow(self):
+        AdminPage.show()
+        self.close()
+class SortPage(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("Sort Page.ui",self) # Load Giao diện từ file Sort Page.ui
 
 if __name__ == "__main__":
+    ListAcc = ListAccount()
     app = QApplication(sys.argv)
-    LoginPage=LoginPage()
+    loginPage=LoginPage()
     SigninPage=SignIn()
+    sort = SortPage()
     add = AddDialog()
     edit =EditDialog()
+    main =MainPage()
     AdminPage = HomeMenuDashboard()
-    AdminPage.show() # Và hiển thị nó
+    loginPage.show() # Và hiển thị nó
     app.exec()
