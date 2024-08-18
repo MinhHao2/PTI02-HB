@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QApplication,QMainWindow,QMessageBox,QDialog
 from PyQt6 import uic
+from PyQt6.QtCore import QDate, QDateTime
 import sys
 from model.Music import Music,ListMusic
 from model.account import Account,ListAccount
@@ -21,15 +22,32 @@ class AddDialog(QDialog):
 class EditDialog(QDialog):
     def __init__(self):
         super().__init__()
+        self.oldMusic = None
         uic.loadUi("Editsong.ui",self)
-        self.buttonBox.accepted.connect(self.EditMovie)
-        self.buttonBox.rejected.connect(self.exit)
+        self.buttonBox.accepted.connect(self.setNewMusic)
 
-    def EditMovie(self):
-        ...
+    def setOldMusic(self, music:Music):
+        # Dat Ten Objects cho dung
+        self.oldMusic = music
+        self.lineEdit_name.setText(music.getName())
+        date_str = music.getDate()
+        date = QDate.fromString(date_str, "yyyy-MM-dd")
+        self.lineEdit_date.setDate(date)
+        self.lineEdit_score.setText(music.getScore())
+        self.lineEdit_URL.setText(music.getLink())
+
+    def setNewMusic(self):
+        # Xoa Movie cu
+        self.l = ListMusic()
+        self.l.delete_music_by_name(self.oldMusic.getName())
+        # Them Movie Moi
+        self.l.add_movie(Music("Null",self.lineEdit_name.text(),self.dateEdit_date.text(),self.lineEdit_score.text(),self.lineEdit_URL.text()))
+        HomeMenuDashboard.callAfterInit()
         self.close()
+
     def exit(self):
-        self.close       
+        self.close()
+     
 class HomeMenuDashboard(QMainWindow,Ui_MainWindow):
     def __init__(self):
         super().__init__()
