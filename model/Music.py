@@ -66,6 +66,10 @@ class ListMusic:
                 result.append(music)
                 music.show()
         return result
+    def getMusicbyname(self,nameMusic):
+        for music in self.list:
+            if music.getName()==nameMusic:
+                return music
 
 
 # while True:  
