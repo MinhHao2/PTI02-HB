@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>952</width>
-    <height>704</height>
+    <width>1550</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <x>0</x>
       <y>0</y>
       <width>101</width>
-      <height>641</height>
+      <height>951</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -213,8 +213,8 @@ color:black;
    <widget class="QWidget" name="widget_8" native="true">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>10</y>
+      <x>240</x>
+      <y>0</y>
       <width>311</width>
       <height>121</height>
      </rect>
@@ -259,10 +259,10 @@ color:black;
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>210</x>
       <y>90</y>
-      <width>741</width>
-      <height>461</height>
+      <width>1101</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -285,8 +285,8 @@ color:black;
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>740</width>
-       <height>444</height>
+       <width>1099</width>
+       <height>464</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -623,7 +623,7 @@ color:black;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>952</width>
+     <width>1550</width>
      <height>24</height>
     </rect>
    </property>

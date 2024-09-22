@@ -1,12 +1,15 @@
 import webbrowser
 import json
 class Music:
-    def __init__(self,id_music,name_music,day_music,score_music,link_music):
+    def __init__(self,id_music,name_music,day_music,score_music,link_music,img):
+
         self.id = id_music
         self.name = name_music
         self.day = day_music
         self.score = score_music
         self.link = link_music
+        self.img=img
+    
     def getName(self):
         return self.name
     def getID(self):
@@ -21,7 +24,8 @@ class Music:
         print(self.id,"-",self.name,"-",self.day,"-",self.score,"-",self.link)
     def open_music(self):
         webbrowser.open(self.link)
-    
+    def getImg(self):
+        return self.img
 class ListMusic:
     def __init__(self):
         self.list = []
@@ -51,12 +55,12 @@ class ListMusic:
         for Music in self.list:
             jsonfiles.append(Music.__dict__)
         with open("model/movie.json","w")as file:
-            json.dump(jsonfiles,file,indent=5) 
+            json.dump(jsonfiles,file,indent=6) 
     def LoadAllMusic(self):
         with open("model/movie.json","r")as file:
             jsonFile = json.load(file)
             for M in jsonFile:
-                music = Music(M["id"],M["name"],M["day"],M["score"],M["link"])
+                music = Music(M["id"],M["name"],M["day"],M["score"],M["link"],M["img"])
                 self.add_music(music)
 
     def searchMusicByTitle(self, name):
@@ -78,6 +82,3 @@ class ListMusic:
 #     for i in newlist.getAllMusic():
 #         if x == i :
 #             i.open_movie()
-l = ListMusic()
-l.edit_music_by_name("Roar2",Music("1","Roar","1/1/1111","6.2","Ko co link"))
-l.searchMusicByTitle("C")

@@ -187,7 +187,7 @@ border-radius:10px;
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="btn_browseimg">
            <property name="font">
             <font>
              <pointsize>24</pointsize>
@@ -198,6 +198,13 @@ border-radius:10px;
            </property>
            <property name="text">
             <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_image">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
           </widget>
          </item>
